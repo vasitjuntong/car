@@ -4,29 +4,14 @@ namespace app\models;
 
 use Yii;
 
-/**
- * This is the model class for table "car_brand".
- *
- * @property integer $id
- * @property string $name
- * @property string $created_at
- * @property string $updated_at
- *
- * @property Car[] $cars
- */
 class CarBrand extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+
     public static function tableName()
     {
         return 'car_brand';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -36,14 +21,11 @@ class CarBrand extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'id'         => Yii::t('app', 'ID'),
+            'name'       => Yii::t('app', 'Name'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

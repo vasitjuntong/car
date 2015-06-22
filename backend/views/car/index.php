@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\CarTypeSearch */
+/* @var $searchModel app\models\CarSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Car Types');
+$this->title = Yii::t('car', 'Cars');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="car-type-index">
+<div class="car-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Car Type'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('car', 'Create Car'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,9 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'name',
-            'created_at',
-            'updated_at',
+            'user_id',
+            'car_type',
+            'car_brand_id',
+            'license_no',
+            // 'registration_at',
+            // 'car_no',
+            // 'engine_no',
+            // 'image_name',
+            // 'image_path',
+            // 'created_at',
+            // 'updated_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -3,69 +3,65 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Expression;
+use common\models\User;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
 
-/**
- * This is the model class for table "car".
- *
- * @property integer $id
- * @property integer $user_id
- * @property integer $car_type_id
- * @property integer $car_brand_id
- * @property string $license_no
- * @property string $registration_at
- * @property string $car_no
- * @property string $engine_no
- * @property string $image_name
- * @property string $image_path
- * @property string $created_at
- * @property string $updated_at
- *
- * @property CarBrand $carBrand
- * @property CarType $carType
- * @property User $user
- */
-class Car extends \yii\db\ActiveRecord
+class Car extends ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+
+    const CAR_STATUS = 'car';
+    const BUS_STATUS = 'bus';
+    const CAR_LABEL = 'Car';
+    const BUS_LABEL = 'Bus';
+
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class'      => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value'      => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     public static function tableName()
     {
         return 'car';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-            [['user_id', 'car_type_id', 'car_brand_id', 'license_no', 'car_no', 'engine_no'], 'required'],
-            [['user_id', 'car_type_id', 'car_brand_id'], 'integer'],
+            [['user_id', 'car_type', 'car_brand_id', 'license_no', 'car_no', 'engine_no'], 'required'],
+            [['user_id', 'car_brand_id'], 'integer'],
+            [['car_type'], 'string'],
             [['registration_at', 'created_at', 'updated_at'], 'safe'],
             [['license_no', 'car_no', 'engine_no'], 'string', 'max' => 100],
             [['image_name', 'image_path'], 'string', 'max' => 255]
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'car_type_id' => Yii::t('app', 'Car Type ID'),
-            'car_brand_id' => Yii::t('app', 'Car Brand ID'),
-            'license_no' => Yii::t('app', 'License No'),
+            'id'              => Yii::t('app', 'ID'),
+            'user_id'         => Yii::t('app', 'User ID'),
+            'car_type'        => Yii::t('app', 'Car Type'),
+            'car_brand_id'    => Yii::t('app', 'Car Brand ID'),
+            'license_no'      => Yii::t('app', 'License No'),
             'registration_at' => Yii::t('app', 'Registration At'),
-            'car_no' => Yii::t('app', 'Car No'),
-            'engine_no' => Yii::t('app', 'Engine No'),
-            'image_name' => Yii::t('app', 'Image Name'),
-            'image_path' => Yii::t('app', 'Image Path'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'car_no'          => Yii::t('app', 'Car No'),
+            'engine_no'       => Yii::t('app', 'Engine No'),
+            'image_name'      => Yii::t('app', 'Image Name'),
+            'image_path'      => Yii::t('app', 'Image Path'),
+            'created_at'      => Yii::t('app', 'Created At'),
+            'updated_at'      => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -75,14 +71,6 @@ class Car extends \yii\db\ActiveRecord
     public function getCarBrand()
     {
         return $this->hasOne(CarBrand::className(), ['id' => 'car_brand_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCarType()
-    {
-        return $this->hasOne(CarType::className(), ['id' => 'car_type_id']);
     }
 
     /**

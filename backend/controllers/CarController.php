@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\CarType;
-use app\models\CarTypeSearch;
+use app\models\Car;
+use app\models\CarSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CarTypeController implements the CRUD actions for CarType model.
+ * CarController implements the CRUD actions for Car model.
  */
-class CarTypeController extends Controller
+class CarController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class CarTypeController extends Controller
     }
 
     /**
-     * Lists all CarType models.
+     * Lists all Car models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CarTypeSearch();
+        $searchModel = new CarSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class CarTypeController extends Controller
     }
 
     /**
-     * Displays a single CarType model.
+     * Displays a single Car model.
      * @param integer $id
      * @return mixed
      */
@@ -54,16 +54,16 @@ class CarTypeController extends Controller
     }
 
     /**
-     * Creates a new CarType model.
+     * Creates a new Car model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new CarType();
+        $model = new Car();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -72,7 +72,7 @@ class CarTypeController extends Controller
     }
 
     /**
-     * Updates an existing CarType model.
+     * Updates an existing Car model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -82,7 +82,7 @@ class CarTypeController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -91,7 +91,7 @@ class CarTypeController extends Controller
     }
 
     /**
-     * Deletes an existing CarType model.
+     * Deletes an existing Car model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class CarTypeController extends Controller
     }
 
     /**
-     * Finds the CarType model based on its primary key value.
+     * Finds the Car model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return CarType the loaded model
+     * @return Car the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = CarType::findOne($id)) !== null) {
+        if (($model = Car::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

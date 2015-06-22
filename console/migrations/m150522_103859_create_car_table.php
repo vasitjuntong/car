@@ -6,6 +6,9 @@ use yii\db\Migration;
 class m150522_103859_create_car_table extends Migration
 {
 
+    const CAR_STATUS = 'car';
+    const BUS_STATUS = 'bus';
+
     public function up()
     {
         $tableOptions = null;
@@ -13,15 +16,6 @@ class m150522_103859_create_car_table extends Migration
             // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
-
-        $this->createTable('{{%car_type}}', [
-
-            'id'         => Schema::TYPE_PK,
-            'name'       => Schema::TYPE_STRING . '(255) NOT NULL',
-            'created_at' => Schema::TYPE_TIMESTAMP . ' NOT NULL',
-            'updated_at' => Schema::TYPE_TIMESTAMP . ' NOT NULL',
-
-        ], $tableOptions);
 
         $this->createTable('{{%car_brand}}', [
 
@@ -36,7 +30,7 @@ class m150522_103859_create_car_table extends Migration
 
             'id'              => Schema::TYPE_PK,
             'user_id'         => Schema::TYPE_INTEGER . ' NOT NULL',
-            'car_type'        => Schema::TYPE_STRING . ' NOT NULL',
+            'car_type'        => 'enum("' . self::CAR_STATUS . '","' . self::BUS_STATUS . '") NOT NULL',
             'car_brand_id'    => Schema::TYPE_INTEGER . ' NOT NULL',
             'license_no'      => Schema::TYPE_STRING . '(100) NOT NULL',
             'registration_at' => Schema::TYPE_TIMESTAMP . ' NOT NULL',
