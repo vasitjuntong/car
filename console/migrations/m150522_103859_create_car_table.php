@@ -36,7 +36,7 @@ class m150522_103859_create_car_table extends Migration
 
             'id'              => Schema::TYPE_PK,
             'user_id'         => Schema::TYPE_INTEGER . ' NOT NULL',
-            'car_type_id'     => Schema::TYPE_INTEGER . ' NOT NULL',
+            'car_type'        => Schema::TYPE_STRING . ' NOT NULL',
             'car_brand_id'    => Schema::TYPE_INTEGER . ' NOT NULL',
             'license_no'      => Schema::TYPE_STRING . '(100) NOT NULL',
             'registration_at' => Schema::TYPE_TIMESTAMP . ' NOT NULL',
@@ -52,11 +52,6 @@ class m150522_103859_create_car_table extends Migration
         $this->addForeignKey('car_foreign_key_to_user',
             '{{%car}}', 'user_id',
             '{{%user}}', 'id',
-            'cascade', 'cascade');
-
-        $this->addForeignKey('car_foreign_key_to_car_type',
-            '{{%car}}', 'car_type_id',
-            '{{%car_type}}', 'id',
             'cascade', 'cascade');
 
         $this->addForeignKey('car_foreign_key_to_car_brand',

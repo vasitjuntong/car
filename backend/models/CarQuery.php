@@ -3,11 +3,11 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[CarType]].
+ * This is the ActiveQuery class for [[Car]].
  *
- * @see CarType
+ * @see Car
  */
-class CarTypeQuery extends \yii\db\ActiveQuery
+class CarQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class CarTypeQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return CarType[]|array
+     * @return Car[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class CarTypeQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return CarType|array|null
+     * @return Car|array|null
      */
     public function one($db = null)
     {
