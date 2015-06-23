@@ -11,8 +11,10 @@ return [
     'basePath'            => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap'           => ['log', 'gii'],
+    'language'            => 'th',
     'modules'             => [
-    ], 'components'       => [
+    ],
+    'components'          => [
         'user'         => [
             'identityClass'   => 'common\models\User',
             'enableAutoLogin' => true,

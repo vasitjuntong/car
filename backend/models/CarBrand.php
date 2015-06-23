@@ -3,9 +3,26 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
 
-class CarBrand extends \yii\db\ActiveRecord
+class CarBrand extends ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class'      => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value'      => new Expression('NOW()'),
+            ],
+        ];
+    }
 
     public static function tableName()
     {
@@ -24,10 +41,10 @@ class CarBrand extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'         => Yii::t('app', 'ID'),
-            'name'       => Yii::t('app', 'Name'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'id'         => Yii::t('car_brand', 'ID'),
+            'name'       => Yii::t('car_brand', 'Name'),
+            'created_at' => Yii::t('car_brand', 'Created At'),
+            'updated_at' => Yii::t('car_brand', 'Updated At'),
         ];
     }
 

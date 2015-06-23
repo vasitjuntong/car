@@ -18,9 +18,28 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+//        'bootstrap/css/bootstrap.min.css',
+        'css/font-awesome.min.css',
+        'css/pace.css',
+        'css/colorbox/colorbox.css',
+        'css/morris.css',
+        'css/endless.min.css',
+        'css/endless-skin.css',
     ];
     public $js = [
+        'bootstrap/js/bootstrap.js',
+        'js/pace.min.js',
+        'js/modernizr.min.js',
+        'js/jquery.popupoverlay.min.js',
+        'js/jquery.slimscroll.min.js',
+        'js/jquery.cookie.min.js',
+//        'js/jquery.flot.min.js',
+        'js/rapheal.min.js',
+        'js/morris.min.js',
+        'js/jquery.colorbox.min.js',
+        'js/jquery.sparkline.min.js',
+//        'js/endless/endless_dashboard.js',
+        'js/endless/endless.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

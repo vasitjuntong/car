@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class CarController extends Controller
 {
+
     public function behaviors()
     {
         return [

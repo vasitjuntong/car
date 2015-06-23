@@ -12,34 +12,32 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="car-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('car', 'Create Car'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="panel panel-default">
+        <div class="panel-heading"><?= Html::a(Yii::t('car', 'Create Car'), ['create'], ['class' => 'btn btn-success']) ?></div>
+        <div class="panel-body">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel'  => $searchModel,
+                'columns'      => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'user_id',
+                    'car_type',
+                    'car_brand_id',
+                    'license_no',
+                    // 'registration_at',
+                    // 'car_no',
+                    // 'engine_no',
+                    // 'image_name',
+                    // 'image_path',
+                    // 'created_at',
+                    // 'updated_at',
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'user_id',
-            'car_type',
-            'car_brand_id',
-            'license_no',
-            // 'registration_at',
-            // 'car_no',
-            // 'engine_no',
-            // 'image_name',
-            // 'image_path',
-            // 'created_at',
-            // 'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
 
 </div>
