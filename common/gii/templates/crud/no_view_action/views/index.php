@@ -37,7 +37,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= "<?= " ?>GridView::widget([
         'dataProvider' => $dataProvider,
         <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'contentOptions' => ['class' => 'text-align'],
+                'headerOptions'  => [
+                    'class' => 'text-align',
+                    'width' => '5%'
+                ],
+            ],
 
 <?php
 $count = 0;

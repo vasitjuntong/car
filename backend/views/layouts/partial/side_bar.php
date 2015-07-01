@@ -22,10 +22,6 @@ use yii\helpers\Url;
             <div class="detail">
                 <strong>อัครินทร์ ราชครุฑ</strong><span
                     class="badge badge-danger m-left-xs bounceIn animation-delay4">4</span>
-                <ul class="list-inline">
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="inbox.html" class="no-margin">Inbox</a></li>
-                </ul>
             </div>
         </div>
         <!-- /user-block -->
@@ -41,6 +37,28 @@ use yii\helpers\Url;
         <!-- /search-block -->
         <div class="main-menu">
             <ul>
+                <li>
+                    <a href="<?=Url::to('/news'); ?>">
+								<span class="menu-icon">
+									<i class="fa fa-desktop fa-lg"></i>
+								</span>
+								<span class="text">
+									จัดการข่าว
+								</span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?=Url::to('/repair'); ?>">
+								<span class="menu-icon">
+									<i class="fa fa-wrench fa-lg"></i>
+								</span>
+								<span class="text">
+									จัดการส่งซ่อม
+								</span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
                 <li
                     class="openable <?= (isset($this->context->activeMenu) and
                         $this->context->activeMenu == 'data_center') ? 'active' : ''; ?>"
@@ -54,88 +72,12 @@ use yii\helpers\Url;
                         </span>
                         <span class="menu-hover"></span>
                     </a>
-                    <ul
-                        class="submenu" <?= (isset($this->context->activeMenu) and
+                    <ul class="submenu" <?= (isset($this->context->activeMenu) and
                         $this->context->activeMenu == 'data_center') ? 'style="display: block"' : ''; ?>
                         >
-                        <li class="<?= (isset($this->context->activeMenu) and
-                            $this->context->activeMenu == 'data_center') ? 'open' : ''; ?>"
-                            >
-                            <a href="<?= Url::to('/car'); ?>"><span class="submenu-label">รถ</span></a></li>
-
                         <li><a href="<?= Url::to('/car-brand'); ?>"><span class="submenu-label">ยี่ห้อรถ</span></a></li>
                         <li><a href="<?= Url::to('/place'); ?>"><span class="submenu-label">จุดรับ</span></a></li>
                     </ul>
-                </li>
-                <li class="openable">
-                    <a href="#">
-								<span class="menu-icon">
-									<i class="fa fa-tag fa-lg"></i>
-								</span>
-								<span class="text">
-									Component
-								</span>
-                        <span class="badge badge-success bounceIn animation-delay5">9</span>
-                        <span class="menu-hover"></span>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="ui_element.html"><span class="submenu-label">UI Features</span></a></li>
-                        <li><a href="button.html"><span class="submenu-label">Button & Icons</span></a></li>
-                        <li><a href="tab.html"><span class="submenu-label">Tab</span></a></li>
-                        <li><a href="nestable_list.html"><span class="submenu-label">Nestable List</span></a></li>
-                        <li><a href="calendar.html"><span class="submenu-label">Calendar</span></a></li>
-                        <li><a href="table.html"><span class="submenu-label">Table</span></a></li>
-                        <li><a href="widget.html"><span class="submenu-label">Widget</span></a></li>
-                        <li><a href="form_element.html"><span class="submenu-label">Form Element</span></a></li>
-                        <li><a href="form_wizard.html"><span class="submenu-label">Form Wizard</span></a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="timeline.html">
-								<span class="menu-icon">
-									<i class="fa fa-clock-o fa-lg"></i>
-								</span>
-								<span class="text">
-									Timeline
-								</span>
-                        <span class="menu-hover"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="gallery.html">
-								<span class="menu-icon">
-									<i class="fa fa-picture-o fa-lg"></i>
-								</span>
-								<span class="text">
-									Gallery
-								</span>
-                        <span class="menu-hover"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="inbox.html">
-								<span class="menu-icon">
-									<i class="fa fa-envelope fa-lg"></i>
-								</span>
-								<span class="text">
-									Inbox
-								</span>
-                        <span class="badge badge-danger bounceIn animation-delay6">4</span>
-                        <span class="menu-hover"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="email_selection.html">
-								<span class="menu-icon">
-									<i class="fa fa-tasks fa-lg"></i>
-								</span>
-								<span class="text">
-									Email Template
-								</span>
-                        <small class="badge badge-warning bounceIn animation-delay7">New</small>
-                        <span class="menu-hover"></span>
-                    </a>
                 </li>
             </ul>
 

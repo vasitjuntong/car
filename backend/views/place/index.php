@@ -12,26 +12,56 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="place-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?= Html::a(Yii::t('place', 'Create Place'), ['create'], ['class' => 'btn btn-success']) ?>
+        </div>
+        <div class="panel-body">
+            <?php
+            ?>
+            ?>
+            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a(Yii::t('place', 'Create Place'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel'  => $searchModel,
+                'columns'      => [
+                    [
+                        'class'          => 'yii\grid\SerialColumn',
+                        'contentOptions' => [
+                            'class' => 'text-center',
+                        ],
+                        'headerOptions'  => [
+                            'class' => 'text-center',
+                            'width' => '5%',
+                        ],
+                    ],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        'attribute' => 'name',
+                        'value'     => function ($model) {
+                            return $model->name;
+                        }
+                    ],
+                    [
+                        'attribute'      => 'created_at',
+                        'value'          => function ($model) {
+                            return $model->created_at;
+                        },
+                    ] + Yii::$app->params['gridOptions']['created_at'],
+                    [
+                        'attribute'      => 'updated_at',
+                        'value'          => function ($model) {
+                            return $model->created_at;
+                        },
+                    ] + Yii::$app->params['gridOptions']['updated_at'],
 
-            'id',
-            'name',
-            'created_at',
-            'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                    ] + Yii::$app->params['gridOptions']['actionColumn'],
+                ],
+            ]); ?>
+        </div>
+    </div>
 
 </div>

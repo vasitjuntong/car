@@ -31,6 +31,7 @@ class Place extends ActiveRecord
             ],
         ];
     }
+
     /**
      * @inheritdoc
      */
@@ -57,10 +58,10 @@ class Place extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'id'         => Yii::t('place', 'ID'),
+            'name'       => Yii::t('place', 'Name'),
+            'created_at' => Yii::t('place', 'Created At'),
+            'updated_at' => Yii::t('place', 'Updated At'),
         ];
     }
 }

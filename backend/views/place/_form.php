@@ -10,18 +10,23 @@ use yii\widgets\ActiveForm;
 
 <div class="place-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <div class="panel panel-default">
+    	<div class="panel-body">
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+            <?= $form->field($model, 'created_at')->textInput() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('place', 'Create') : Yii::t('place', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= $form->field($model, 'updated_at')->textInput() ?>
+
+            <div class="form-group">
+                <?= Html::submitButton($model->isNewRecord ? Yii::t('place', 'Create') : Yii::t('place', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+    	</div>
     </div>
-
-    <?php ActiveForm::end(); ?>
 
 </div>

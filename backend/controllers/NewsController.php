@@ -3,50 +3,50 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\Car;
-use app\models\CarSearch;
+use app\models\News;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use app\models\NewsSearch;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use yii\web\NotFoundHttpException;
 
-/**
- * CarController implements the CRUD actions for Car model.
- */
-class CarController extends Controller
+class NewsController extends Controller
 {
 
     public function behaviors()
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->username === 'admin';
+                        }
+                    ],
                 ],
             ],
         ];
     }
 
-    /**
-     * Lists all Car models.
-     * @return mixed
-     */
     public function actionIndex()
     {
-        $searchModel = new CarSearch();
+        $searchModel = new NewsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
-    /**
-     * Displays a single Car model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -54,14 +54,11 @@ class CarController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Car model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
-        $model = new Car();
+        $model = new News();
+
+        $model->user_id = Yii::$app->user->identity->getId();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,15 +69,11 @@ class CarController extends Controller
         }
     }
 
-    /**
-     * Updates an existing Car model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        $model->user_id = Yii::$app->user->identity->getId();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -91,12 +84,6 @@ class CarController extends Controller
         }
     }
 
-    /**
-     * Deletes an existing Car model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -104,16 +91,9 @@ class CarController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Car model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Car the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
-        if (($model = Car::findOne($id)) !== null) {
+        if (($model = News::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
