@@ -16,7 +16,7 @@ return [
         'urlManager' => [
             'class'           => 'yii\web\UrlManager',
             // Disable index.php
-            'showScriptName'  => false,
+//            'showScriptName'  => false,
             // Disable r= routes
             'enablePrettyUrl' => true,
             'rules'           => array(
