@@ -17,9 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a(Yii::t('place', 'Create Place'), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
         <div class="panel-body">
-            <?php
-            ?>
-            ?>
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <?= GridView::widget([
