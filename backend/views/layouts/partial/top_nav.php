@@ -64,25 +64,35 @@
                 <li><a href="#">View all notifications</a></li>
             </ul>
         </li>
-        <li class="profile dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <strong>อัครินทร์ ราชครุฑ</strong>
-                <span><i class="fa fa-chevron-down"></i></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                    <a class="clearfix" href="#">
-                        <img src="img/user.jpg" alt="User Avatar">
-                        <div class="detail">
-                            <strong>อัครินทร์ ราชครุฑ</strong>
-                            <p class="grey">akarin@email.com</p>
-                        </div>
+        <?php
+            if(Yii::$app->user->isGuest) {
+                ?>
+
+                <?php
+            }else {
+                ?>
+                <li class="profile dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <strong><?=Yii::$app->user->getIdentity()->email; ?></strong>
+                        <span><i class="fa fa-chevron-down"></i></span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="clearfix" href="#">
+                                <img src="img/user.jpg" alt="User Avatar">
+                                <div class="detail">
+                                    <strong>อัครินทร์ ราชครุฑ</strong>
+                                    <p class="grey">akarin@email.com</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li><a tabindex="-1" href="profile.html" class="main-link"><i class="fa fa-edit fa-lg"></i> แก้ไขข้อมูลส่วนตัว</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" class="main-link logoutConfirm_open" href="#logoutConfirm"><i class="fa fa-lock fa-lg"></i> ลงชื่อออก</a></li>
+                    </ul>
                 </li>
-                <li><a tabindex="-1" href="profile.html" class="main-link"><i class="fa fa-edit fa-lg"></i> แก้ไขข้อมูลส่วนตัว</a></li>
-                <li class="divider"></li>
-                <li><a tabindex="-1" class="main-link logoutConfirm_open" href="#logoutConfirm"><i class="fa fa-lock fa-lg"></i> ลงชื่อออก</a></li>
-            </ul>
-        </li>
+                <?php
+            }
+        ?>
     </ul>
 </div>

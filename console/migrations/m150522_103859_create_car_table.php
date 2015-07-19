@@ -33,11 +33,11 @@ class m150522_103859_create_car_table extends Migration
             'car_type'        => 'enum("' . self::CAR_STATUS . '","' . self::BUS_STATUS . '") NOT NULL',
             'car_brand_id'    => Schema::TYPE_INTEGER . ' NOT NULL',
             'license_no'      => Schema::TYPE_STRING . '(100) NOT NULL',
-            'registration_at' => Schema::TYPE_TIMESTAMP . ' NOT NULL',
             'car_no'          => Schema::TYPE_STRING . '(100) NOT NULL',
             'engine_no'       => Schema::TYPE_STRING . '(100) NOT NULL',
             'image_name'      => Schema::TYPE_STRING . '(255) NULL',
             'image_path'      => Schema::TYPE_STRING . '(255) NULL',
+            'registration_at' => Schema::TYPE_TIMESTAMP . ' NOT NULL',
             'created_at'      => Schema::TYPE_TIMESTAMP . ' NOT NULL',
             'updated_at'      => Schema::TYPE_TIMESTAMP . ' NOT NULL',
 

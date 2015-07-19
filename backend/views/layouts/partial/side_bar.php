@@ -38,7 +38,7 @@ use yii\helpers\Url;
         <div class="main-menu">
             <ul>
                 <li>
-                    <a href="<?=Url::to('/news'); ?>">
+                    <a href="<?=Url::to('/index.php/news'); ?>">
 								<span class="menu-icon">
 									<i class="fa fa-desktop fa-lg"></i>
 								</span>
@@ -49,7 +49,7 @@ use yii\helpers\Url;
                     </a>
                 </li>
                 <li>
-                    <a href="<?=Url::to('/repair'); ?>">
+                    <a href="<?=Url::to('/index.php/repair'); ?>">
 								<span class="menu-icon">
 									<i class="fa fa-wrench fa-lg"></i>
 								</span>
@@ -75,8 +75,8 @@ use yii\helpers\Url;
                     <ul class="submenu" <?= (isset($this->context->activeMenu) and
                         $this->context->activeMenu == 'data_center') ? 'style="display: block"' : ''; ?>
                         >
-                        <li><a href="<?= Url::to('/car-brand'); ?>"><span class="submenu-label">ยี่ห้อรถ</span></a></li>
-                        <li><a href="<?= Url::to('/place'); ?>"><span class="submenu-label">จุดรับ</span></a></li>
+                        <li><a href="<?= Url::to('/index.php/car-brand'); ?>"><span class="submenu-label">ยี่ห้อรถ</span></a></li>
+                        <li><a href="<?= Url::to('/index.php/place'); ?>"><span class="submenu-label">จุดรับ</span></a></li>
                     </ul>
                 </li>
             </ul>

@@ -10,11 +10,14 @@ return [
     'id'                  => 'app-backend',
     'basePath'            => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap'           => ['log', 'gii'],
-    'language'            => 'th',
-    'modules'             => [
-    ],
+    'bootstrap'           => ['log'],
+    'modules'             => [],
     'components'          => [
+        'urlManager'   => [
+            'enablePrettyUrl' => true,
+            'rules'           => [
+            ],
+        ],
         'user'         => [
             'identityClass'   => 'common\models\User',
             'enableAutoLogin' => true,

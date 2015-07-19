@@ -24,7 +24,7 @@ AppAsset::register($this);
 <!-- Overlay Div -->
 <div id="overlay" class="transparent"></div>
 
-<?=$this->render('partial/theme_setting'); ?>
+<?= $this->render('partial/theme_setting'); ?>
 
 <div id="wrapper" class="preload">
     <!-- /top-nav-->
@@ -42,8 +42,10 @@ AppAsset::register($this);
 
         <div class="padding-md">
             <?= $content; ?>
-        </div><!-- /.padding-md -->
-    </div><!-- /main-container -->
+        </div>
+        <!-- /.padding-md -->
+    </div>
+    <!-- /main-container -->
     <!-- Footer
     ================================================== -->
     <footer>
@@ -52,11 +54,14 @@ AppAsset::register($this);
 					<span class="footer-brand">
 						<strong class="text-danger">Endless</strong> Admin
 					</span>
+
                 <p class="no-margin">
                     &copy; 2013 <strong>Endless Admin</strong>. ALL Rights Reserved.
                 </p>
-            </div><!-- /.col -->
-        </div><!-- /.row-->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row-->
     </footer>
 
 
@@ -72,7 +77,8 @@ AppAsset::register($this);
                     <form>
                         <div class="form-group">
                             <label for="folderName">Folder Name</label>
-                            <input type="text" class="form-control input-sm" id="folderName" placeholder="Folder name here...">
+                            <input type="text" class="form-control input-sm" id="folderName"
+                                   placeholder="Folder name here...">
                         </div>
                     </form>
                 </div>
@@ -80,10 +86,14 @@ AppAsset::register($this);
                     <button class="btn btn-sm btn-success" data-dismiss="modal" aria-hidden="true">Close</button>
                     <a href="#" class="btn btn-danger btn-sm">Save changes</a>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-</div><!-- /wrapper -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
+<!-- /wrapper -->
 
 <a href="" id="scroll-to-top" class="hidden-print"><i class="fa fa-chevron-up"></i></a>
 
@@ -94,7 +104,11 @@ AppAsset::register($this);
     </div>
 
     <div class="text-center">
-        <a class="btn btn-success m-right-sm" href="landing.html">ลงชื่ออก</a>
+
+        <?= HTML::a('ลงชื่อออก', '/index.php/site/logout', [
+            'class'  => 'btn btn-success m-right-sm',
+            'data-method' => 'post',
+        ]); ?>
         <a class="btn btn-danger logoutConfirm_close">ยกเลิก</a>
     </div>
 </div>
