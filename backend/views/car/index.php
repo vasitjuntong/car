@@ -14,13 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">
-
-                <?= Html::a(Yii::t('main', 'Create {name}', [
-                    'name' => Yii::t('car', 'Cars')
-                ]), ['create'], ['class' => 'btn btn-success']) ?>
-
-            </h3>
+            <?= Html::a(Yii::t('main', 'Create {name}', [
+                'name' => Yii::t('car', 'Cars')
+            ]), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
         <div class="panel-body">
             <?= GridView::widget([

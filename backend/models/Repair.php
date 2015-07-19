@@ -21,6 +21,7 @@ use Yii;
  */
 class Repair extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -49,12 +50,12 @@ class Repair extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('repair', 'ID'),
-            'user_id' => Yii::t('repair', 'User ID'),
-            'car_id' => Yii::t('repair', 'Car ID'),
-            'amount' => Yii::t('repair', 'Amount'),
-            'file' => Yii::t('repair', 'File'),
-            'file_name' => Yii::t('repair', 'File Name'),
+            'id'         => Yii::t('repair', 'ID'),
+            'user_id'    => Yii::t('repair', 'User ID'),
+            'car_id'     => Yii::t('repair', 'Car ID'),
+            'amount'     => Yii::t('repair', 'Amount'),
+            'file'       => Yii::t('repair', 'File'),
+            'file_name'  => Yii::t('repair', 'File Name'),
             'created_at' => Yii::t('repair', 'Created At'),
             'updated_at' => Yii::t('repair', 'Updated At'),
         ];
