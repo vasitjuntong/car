@@ -23,6 +23,21 @@ class RepairController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action){
+
+                            if(Yii::$app->user->isGuest)
+                                return false;
+
+                            return Yii::$app->user->identity->username === 'admin';
+                        }
+                    ],
+                ],
+            ],
         ];
     }
 
