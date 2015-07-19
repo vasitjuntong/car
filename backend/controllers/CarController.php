@@ -6,6 +6,7 @@ use app\models\UploadForm;
 use Yii;
 use app\models\Car;
 use app\models\CarSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

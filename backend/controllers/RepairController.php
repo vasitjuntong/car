@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use app\models\Repair;
 use app\models\RepairSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
