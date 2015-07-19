@@ -1,8 +1,11 @@
 <?php
+
 return [
-    'adminEmail'  => 'admin@example.com',
-    'activeMenu'  => '',
-    'formSetting' => [
+    'adminEmail'        => 'admin@example.com',
+    'activeMenu'        => '',
+    'filePath'          => '/uploads/',
+    'fileThumbnailPath' => '/uploads/thumbnails/',
+    'formSetting'       => [
         'layout'      => 'horizontal',
         'fieldConfig' => [
             'template'             => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",

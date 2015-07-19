@@ -36,7 +36,7 @@ AppAsset::register($this);
 
         <?= $this->render('partial/breadcrumb'); ?>
 
-        <?= $this->render('partial/main_head'); ?>
+        <?php //echo $this->render('partial/main_head'); ?>
 
         <?php //echo $this->render('partial/short_icon'); ?>
 

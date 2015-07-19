@@ -13,8 +13,8 @@ class Car extends ActiveRecord
 
     const CAR_STATUS = 'car';
     const BUS_STATUS = 'bus';
-    const CAR_LABEL = 'Car';
-    const BUS_LABEL = 'Bus';
+    const CAR_LABEL = 'รถยนต์';
+    const BUS_LABEL = 'รถบัสปรับอากาศ';
 
     public function behaviors()
     {
@@ -50,18 +50,18 @@ class Car extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'              => Yii::t('app', 'ID'),
-            'user_id'         => Yii::t('app', 'User ID'),
-            'car_type'        => Yii::t('app', 'Car Type'),
-            'car_brand_id'    => Yii::t('app', 'Car Brand ID'),
-            'license_no'      => Yii::t('app', 'License No'),
-            'registration_at' => Yii::t('app', 'Registration At'),
-            'car_no'          => Yii::t('app', 'Car No'),
-            'engine_no'       => Yii::t('app', 'Engine No'),
-            'image_name'      => Yii::t('app', 'Image Name'),
-            'image_path'      => Yii::t('app', 'Image Path'),
-            'created_at'      => Yii::t('app', 'Created At'),
-            'updated_at'      => Yii::t('app', 'Updated At'),
+            'id'              => Yii::t('car', 'ID'),
+            'user_id'         => Yii::t('car', 'User ID'),
+            'car_type'        => Yii::t('car', 'Car Type'),
+            'car_brand_id'    => Yii::t('car', 'Car Brand ID'),
+            'license_no'      => Yii::t('car', 'License No'),
+            'registration_at' => Yii::t('car', 'Registration At'),
+            'car_no'          => Yii::t('car', 'Car No'),
+            'engine_no'       => Yii::t('car', 'Engine No'),
+            'image_name'      => Yii::t('car', 'Image Name'),
+            'image_path'      => Yii::t('car', 'Image Path'),
+            'created_at'      => Yii::t('car', 'Created At'),
+            'updated_at'      => Yii::t('car', 'Updated At'),
         ];
     }
 
@@ -88,5 +88,13 @@ class Car extends ActiveRecord
     public static function find()
     {
         return new CarQuery(get_called_class());
+    }
+
+    public static function carTypes()
+    {
+        return [
+            self::CAR_STATUS => self::CAR_LABEL,
+            self::BUS_STATUS => self::BUS_LABEL,
+        ];
     }
 }

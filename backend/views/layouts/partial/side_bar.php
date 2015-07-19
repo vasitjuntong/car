@@ -38,6 +38,17 @@ use yii\helpers\Url;
         <div class="main-menu">
             <ul>
                 <li>
+                    <a href="<?=Url::to('/index.php/car'); ?>">
+								<span class="menu-icon">
+									<i class="fa fa-truck fa-lg"></i>
+								</span>
+								<span class="text">
+									จัดการรถ
+								</span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+                <li>
                     <a href="<?=Url::to('/index.php/news'); ?>">
 								<span class="menu-icon">
 									<i class="fa fa-desktop fa-lg"></i>
