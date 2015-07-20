@@ -40,6 +40,8 @@ class AppAsset extends AssetBundle
         'js/jquery.sparkline.min.js',
 //        'js/endless/endless_dashboard.js',
         'js/endless/endless.js',
+        'tinymce/tinymce.js',
+        'js/endless/test_tiny.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
