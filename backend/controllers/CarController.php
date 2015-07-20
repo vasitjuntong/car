@@ -80,8 +80,6 @@ class CarController extends Controller
     public function actionCreate()
     {
         $model = new Car();
-        $model->user_id = Yii::$app->getUser()->id;
-
         $modelUpload = new UploadForm();
 
         if (Yii::$app->request->isPost) {

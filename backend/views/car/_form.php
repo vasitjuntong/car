@@ -2,6 +2,7 @@
 
 use app\models\Car;
 use app\models\CarBrand;
+use common\models\User;
 use kartik\date\DatePicker;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -17,6 +18,16 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'options' => ['enctype' => 'multipart/form-data']
     ]); ?>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <?= $form->field($model, 'user_id')
+                ->dropDownList(ArrayHelper::map(User::find()->all(), 'id', 'username')) ?>
+        </div>
+        <div class="col-sm-6">
+            <?= $form->field($modelUpload, 'imageFile')->fileInput(['enctype' => 'multipart/form-data']) ?>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-sm-6">
@@ -51,8 +62,6 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'engine_no')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
-
-    <?= $form->field($modelUpload, 'imageFile')->fileInput(['enctype' => 'multipart/form-data']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ?
