@@ -13,11 +13,6 @@ return [
     'bootstrap'           => ['log'],
     'modules'             => [],
     'components'          => [
-        'urlManager'   => [
-            'enablePrettyUrl' => true,
-            'rules'           => [
-            ],
-        ],
         'user'         => [
             'identityClass'   => 'common\models\User',
             'enableAutoLogin' => true,
