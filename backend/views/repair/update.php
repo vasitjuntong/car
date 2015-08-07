@@ -15,7 +15,8 @@ $this->params['breadcrumbs'][] = Yii::t('repair', 'Update');
 <div class="repair-update">
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'model'     => $model,
+        'modelFile' => $modelFile,
     ]) ?>
 
 </div>

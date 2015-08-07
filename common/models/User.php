@@ -2,6 +2,7 @@
 namespace common\models;
 
 use app\models\News;
+use app\models\UserDetail;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -187,6 +188,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getUserDetail()
+    {
+        return $this->hasOne(UserDetail::className(), ['user_id', 'user_id']);
     }
 
     public function getNewses()

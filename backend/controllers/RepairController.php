@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use app\models\UploadFileForm;
 use Yii;
 use app\models\Repair;
 use app\models\RepairSearch;
@@ -9,17 +10,19 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * RepairController implements the CRUD actions for Repair model.
  */
 class RepairController extends Controller
 {
+
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
+            'verbs'  => [
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -28,10 +31,10 @@ class RepairController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow' => true,
-                        'matchCallback' => function ($rule, $action){
+                        'allow'         => true,
+                        'matchCallback' => function ($rule, $action) {
 
-                            if(Yii::$app->user->isGuest)
+                            if (Yii::$app->user->isGuest)
                                 return false;
 
                             return Yii::$app->user->identity->username === 'admin';
@@ -52,7 +55,7 @@ class RepairController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -78,13 +81,40 @@ class RepairController extends Controller
     {
         $model = new Repair();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        $modelFile = new UploadFileForm();
+
+        if (Yii::$app->request->isPost) {
+
+            $model->load(Yii::$app->request->post());
+
+            $model->user_id = Yii::$app->user->getId();
+
+            $modelFile->file = UploadedFile::getInstance($modelFile, 'file');;
+
+            $model->validate();
+
+            $modelFile->validate();
+
+            if ($model->getErrors() == null and $modelFile->getErrors() == null) {
+
+                $response = $modelFile->upload();
+
+                if ($response != false) {
+                    $model->file = $response['file_path'];
+                    $model->file_name = $response['file_name'];
+                }
+
+                if ($model->save()) {
+
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
         }
+
+        return $this->render('create', [
+            'model'     => $model,
+            'modelFile' => $modelFile,
+        ]);
     }
 
     /**
@@ -97,13 +127,29 @@ class RepairController extends Controller
     {
         $model = $this->findModel($id);
 
+        return Yii::$app->response->sendFile($model->file);
+
+        $modelFile = new UploadFileForm();
+
+        if (Yii::$app->request->isPost) {
+            $modelFile->file = UploadedFile::getInstance($modelFile, 'file');
+            $resultUpload = $modelFile->upload();
+            if ($resultUpload) {
+                if (file_exists($model->file) and unlink($model->file)) {
+                    $model->file = $resultUpload['file_path'];
+                    $model->file_name = $resultUpload['file_name'];
+                }
+            }
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
         }
+
+        return $this->render('update', [
+            'model'     => $model,
+            'modelFile' => $modelFile,
+        ]);
     }
 
     /**
@@ -114,9 +160,21 @@ class RepairController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        if (file_exists($model->file))
+            unlink($model->file);
+
+        $model->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDownloadFile($id)
+    {
+        $model = $this->findModel($id);
+
+        return Yii::$app->response->sendFile($model->file, $model->file_name);
     }
 
     /**

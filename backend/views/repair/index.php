@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\RepairSearch */
@@ -23,16 +24,40 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
+        'filterModel'  => $searchModel,
+        'columns'      => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
-            'car_id',
-            'amount',
-            'file',
-            // 'file_name',
+            [
+                'attribute' => 'user_id',
+                'value'     => function ($data) {
+                    return $data->user->username;
+                }
+            ],
+            [
+                'attribute' => 'car_id',
+                'value'     => function ($data) {
+                    return $data->car->license_no;
+                }
+            ],
+            [
+                'attribute'    => 'amount',
+                'value'       => function($data){
+                    return Yii::$app->formatter->asCurrency($data->amount, 'THB');
+                },
+//                'format'       => [
+//                    'class' => 'yii\i18n\Formatter ',
+//                    'currencyCode' => '฿',
+//                ],
+            ],
+            [
+                'attribute' => 'file_name',
+                'value'     => function ($model) {
+                    return Html::a($model->file_name, Url::to(['/repair/download-file', 'id' => $model->id]));
+                },
+                'format'    => 'html',
+                'filter'    => false,
+            ],
             // 'created_at',
             // 'updated_at',
 

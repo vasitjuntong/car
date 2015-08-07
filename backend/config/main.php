@@ -17,6 +17,11 @@ return [
             'identityClass'   => 'common\models\User',
             'enableAutoLogin' => true,
         ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'rules' => [
+            ],
+        ],
         'log'          => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets'    => [
